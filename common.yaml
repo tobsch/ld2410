@@ -21,10 +21,14 @@ esp32:
     type: esp-idf
 
 logger:
+
 api:
+  encryption:
+    key: ${api_key}
 
 ota:
-  platform: esphome
+  - platform: esphome
+    password: ${ota_password}
 
 wifi:
   ssid: ${wifi_ssid}

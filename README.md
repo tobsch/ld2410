@@ -27,16 +27,26 @@ Add to your `secrets.yaml`:
 wifi_ssid: "your-wifi-ssid"
 wifi_password: "your-wifi-password"
 # fallback_ap_password: "custom-fallback-password"  # Optional, defaults to wifi_password
+ota_password: "your-ota-password"
 ```
 
-### Creating a New Sensor
+**Shared OTA password** works for all devices, or you can use device-specific passwords for extra security.
 
-Create a new YAML file for each sensor (e.g., `living-room.yaml`):
+### Home Assistant Integration
+
+Each device requires a **unique API encryption key** for Home Assistant. Generate one using:
+
+```bash
+esphome secrets generate-encryption-key
+```
+
+Add the unique key to each device YAML file:
 
 ```yaml
 substitutions:
   devicename: living-room
   friendly: Living Room
+  api_key: "U8Ua36gSoAv2nnzDeMWdU0eSuAqJ8SwpMW88qLRG6wo="  # Unique per device
 
 packages:
   remote_package:
@@ -45,12 +55,15 @@ packages:
     refresh: 1d
 ```
 
-Override additional settings as needed:
+**Best Practice:** Use a different `api_key` for each sensor for better security.
+
+**Override additional settings** as needed:
 
 ```yaml
 substitutions:
   devicename: bedroom
   friendly: Bedroom
+  api_key: "xyz123anotherUniqueKey456..."  # Different key for this device
   ld_uart_tx: GPIO4  # Custom pins
   ld_uart_rx: GPIO5
 
@@ -69,6 +82,7 @@ If you've cloned this repository, you can use local includes instead:
 substitutions:
   devicename: bedroom
   friendly: Bedroom
+  api_key: "yourUniqueKeyHere..."
 
 packages:
   common: !include common.yaml
@@ -81,6 +95,9 @@ esphome run <device-name>.yaml
 ```
 
 ## Features
+
+### Home Assistant Ready
+Full Home Assistant integration with encrypted API communication and OTA updates.
 
 ### WiFi Fallback
 If the device cannot connect to WiFi, it will automatically create a fallback access point with captive portal. Connect to the AP (named "[Device Name] Fallback") to reconfigure WiFi credentials.
