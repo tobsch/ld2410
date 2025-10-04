@@ -26,6 +26,7 @@ Add to your `secrets.yaml`:
 ```yaml
 wifi_ssid: "your-wifi-ssid"
 wifi_password: "your-wifi-password"
+# fallback_ap_password: "custom-fallback-password"  # Optional, defaults to wifi_password
 ```
 
 ### Creating a New Sensor
@@ -64,7 +65,12 @@ packages:
 esphome run <device-name>.yaml
 ```
 
-## Available Sensors
+## Features
+
+### WiFi Fallback
+If the device cannot connect to WiFi, it will automatically create a fallback access point with captive portal. Connect to the AP (named "[Device Name] Fallback") to reconfigure WiFi credentials.
+
+### Available Sensors
 
 Each device provides:
 
