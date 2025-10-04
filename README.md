@@ -37,18 +37,33 @@ Create a new YAML file for each sensor (e.g., `living-room.yaml`):
 substitutions:
   devicename: living-room
   friendly: Living Room
-  board: esp32-c3-devkitm-1
-  wifi_ssid: !secret wifi_ssid
-  wifi_password: !secret wifi_password
-  ld_uart_tx: GPIO21
-  ld_uart_rx: GPIO20
-  ld_baud: "256000"
 
 packages:
-  common: !include common.yaml
+  remote_package:
+    url: https://github.com/tobsch/ld2410
+    files: [common.yaml]
+    refresh: 1d
 ```
 
-Or override only what's needed:
+Override additional settings as needed:
+
+```yaml
+substitutions:
+  devicename: bedroom
+  friendly: Bedroom
+  ld_uart_tx: GPIO4  # Custom pins
+  ld_uart_rx: GPIO5
+
+packages:
+  remote_package:
+    url: https://github.com/tobsch/ld2410
+    files: [common.yaml]
+    refresh: 1d
+```
+
+**Alternative: Local configuration**
+
+If you've cloned this repository, you can use local includes instead:
 
 ```yaml
 substitutions:
