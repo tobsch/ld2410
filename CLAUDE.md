@@ -15,6 +15,9 @@ This repository contains ESPHome configuration for ld2410 presence detection sen
   - Provides sensor for detection distance measurement
   - Includes Home Assistant API with encryption and OTA updates
   - WiFi fallback with captive portal for reconfiguration
+  - Bluetooth proxy for extending Home Assistant BLE range
+  - Diagnostic sensors (WiFi signal, uptime, internal temperature, IP, SSID, version)
+  - Control buttons (restart, safe mode)
 
 ## Key Configuration Points
 
@@ -25,6 +28,7 @@ This repository contains ESPHome configuration for ld2410 presence detection sen
 - OTA password configured via `ota_password` substitution (can be shared or per-device)
 - Minimum ESPHome version required: 2025.5.0
 - Device names use substitutions for easy customization per device
+- Bluetooth proxy enabled by default - extends Home Assistant's Bluetooth range
 
 ## Expected Usage Pattern
 

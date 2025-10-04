@@ -99,20 +99,43 @@ esphome run <device-name>.yaml
 ### Home Assistant Ready
 Full Home Assistant integration with encrypted API communication and OTA updates.
 
+### Bluetooth Proxy
+ESP32-C3 acts as a Bluetooth proxy, extending Home Assistant's Bluetooth range throughout your house. Automatically relays BLE devices like temperature sensors, locks, and tracking tags.
+
 ### WiFi Fallback
 If the device cannot connect to WiFi, it will automatically create a fallback access point with captive portal. Connect to the AP (named "[Device Name] Fallback") to reconfigure WiFi credentials.
 
-### Available Sensors
+### Available Sensors & Controls
 
-Each device provides:
+**Presence Detection:**
+- Target detection (presence/absence)
+- Detection distance in meters
 
-- **Binary Sensor**: Target detection (presence/absence)
-- **Sensor**: Detection distance in meters
+**Diagnostic Sensors:**
+- WiFi signal strength
+- Uptime
+- Internal temperature
+- IP address
+- Connected SSID
+- ESPHome version
+
+**Controls:**
+- Restart button
+- Safe mode button (recovery mode for OTA failures)
 
 ## Pin Configuration
 
-Default UART pins for ESP32-C3:
-- TX: GPIO21
-- RX: GPIO20
+Default UART pins for ESP32-C3-DevKitM-1:
+- **TX**: GPIO21
+- **RX**: GPIO20
 
-Override in device-specific YAML if using different pins.
+Override in device-specific YAML if using different pins:
+
+```yaml
+substitutions:
+  devicename: custom-device
+  friendly: Custom Device
+  api_key: "your-key..."
+  ld_uart_tx: GPIO4
+  ld_uart_rx: GPIO5
+```
