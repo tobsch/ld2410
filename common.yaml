@@ -1,6 +1,5 @@
 substitutions:
   devicename: base
-  friendly: Presence Detector
   board: esp32-c3-devkitm-1
   wifi_ssid: !secret wifi_ssid
   wifi_password: !secret wifi_password
@@ -11,7 +10,6 @@ substitutions:
 
 esphome:
   name: ${devicename}
-  friendly_name: ${friendly}
   min_version: 2025.5.0
   name_add_mac_suffix: false
 
@@ -44,7 +42,7 @@ wifi:
   ssid: ${wifi_ssid}
   password: ${wifi_password}
   ap:
-    ssid: "${friendly} Fallback"
+    ssid: "${devicename} Fallback"
     password: ${fallback_ap_password}
 
 captive_portal:
@@ -61,39 +59,39 @@ ld2410:
 binary_sensor:
   - platform: ld2410
     has_target:
-      name: "${friendly} Target Detected"
+      name: "Target Detected"
 
 sensor:
   - platform: ld2410
     detection_distance:
-      name: "${friendly} Detection Distance"
+      name: "Detection Distance"
 
   # Diagnostic sensors
   - platform: wifi_signal
-    name: "${friendly} WiFi Signal"
+    name: "WiFi Signal"
     update_interval: 60s
 
   - platform: uptime
-    name: "${friendly} Uptime"
+    name: "Uptime"
     update_interval: 60s
 
   - platform: internal_temperature
-    name: "${friendly} Internal Temperature"
+    name: "Internal Temperature"
     update_interval: 60s
 
 text_sensor:
   - platform: wifi_info
     ip_address:
-      name: "${friendly} IP Address"
+      name: "IP Address"
     ssid:
-      name: "${friendly} Connected SSID"
+      name: "Connected SSID"
 
   - platform: version
-    name: "${friendly} ESPHome Version"
+    name: "ESPHome Version"
 
 button:
   - platform: restart
-    name: "${friendly} Restart"
+    name: "Restart"
 
   - platform: safe_mode
-    name: "${friendly} Safe Mode"
+    name: "Safe Mode"
