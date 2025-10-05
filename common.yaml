@@ -24,7 +24,7 @@ logger:
 
 api:
   encryption:
-    key: ${api_key}
+    key: !secret ha_api_key
 
 # Bluetooth Proxy
 esp32_ble_tracker:
