@@ -29,8 +29,8 @@ api:
 # Bluetooth Proxy
 esp32_ble_tracker:
   scan_parameters:
-    interval: 320ms
-    window: 30ms
+    interval: 1100ms
+    window: 300ms
     active: true
 
 bluetooth_proxy:
